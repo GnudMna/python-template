@@ -1,0 +1,39 @@
+[project]
+name = "python-template"
+version = "0.0.0"
+description = "A Python project template"
+readme = "README.md"
+authors = [
+    { name = "Your Name", email = "you@example.com" },
+]
+license = { text = "MIT" }
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+python-template = "python_template:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pyright>=1.1",
+    "ruff>=0.9",
+]
+
+[build-system]
+requires = ["uv_build>=0.11.17,<0.12.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pyright]
+include = ["src", "tests"]
+typeCheckingMode = "standard"
