@@ -188,7 +188,7 @@ uv build
 ## 含まれる設定
 
 - **Python 3.13** (`.python-version` と `requires-python` で固定)
-- **Ruff** (Lint / フォーマット)
+- **Ruff** (Lint / フォーマット。pydocstyle は NumPy 規約)
 - **Pyright** (型チェック)
 - **pytest** (テスト)
 - **src レイアウト** (`src/python_template/` パッケージ。`__version__` と PEP 561 の `py.typed` を含む)

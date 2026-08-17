@@ -33,7 +33,59 @@ line-length = 100
 target-version = "py313"
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B", "SIM"]
+select = [
+    "A",      # flake8-builtins
+    "ANN",    # flake8-annotations
+    "ARG",    # flake8-unused-arguments
+    "ASYNC",  # flake8-async
+    "B",      # flake8-bugbear
+    "BLE",    # flake8-blind-except
+    "C4",     # flake8-comprehensions
+    "D",      # pydocstyle
+    "DTZ",    # flake8-datetimez
+    "E",      # pycodestyle errors
+    "ERA",    # eradicate (コメントアウトされたコード)
+    "F",      # Pyflakes
+    "FLY",    # flynt
+    "FURB",   # refurb
+    "I",      # isort
+    "ICN",    # flake8-import-conventions
+    "ISC",    # flake8-implicit-str-concat
+    "LOG",    # flake8-logging
+    "N",      # pep8-naming
+    "PERF",   # Perflint
+    "PGH",    # pygrep-hooks
+    "PIE",    # flake8-pie
+    "PL",     # Pylint
+    "PT",     # flake8-pytest-style
+    "PTH",    # flake8-use-pathlib
+    "RET",    # flake8-return
+    "RSE",    # flake8-raise
+    "RUF",    # Ruff-specific
+    "S",      # flake8-bandit
+    "SIM",    # flake8-simplify
+    "SLF",    # flake8-self
+    "SLOT",   # flake8-slots
+    "T10",    # flake8-debugger
+    "TC",     # flake8-type-checking
+    "TID",    # flake8-tidy-imports
+    "UP",     # pyupgrade
+    "W",      # pycodestyle warnings
+]
+ignore = [
+    "D400",    # 日本語 docstring の句点 (。) を文末と見なさない
+    "D403",    # 先頭語の英語大文字化は日本語に合わない
+    "ISC001",  # フォーマッタと衝突する
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = [
+    "S101",     # pytest では assert を使う
+    "PLR2004",  # テストの期待値はマジックナンバーでよい
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
 
 [tool.pyright]
 include = ["src", "tests"]
