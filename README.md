@@ -191,7 +191,7 @@ uv build
 - **pytest** (テスト)
 - **src レイアウト** (`src/python_template/` パッケージ)
 - **コンソールスクリプト** (`[project.scripts]` → `uv run python-template`)
-- **エディタ設定** (`.editorconfig`, `.gitattributes`, `.vscode/` で Ruff 推奨・保存時フォーマット。デバッグ開始時に `.venv` が無ければ `uv sync`)
+- **エディタ設定** (`.editorconfig`, `.gitattributes`, `.vscode/` で Ruff 推奨・保存時フォーマット。pytest をテストエクスプローラーで検出。デバッグ開始時に `.venv` が無ければ `uv sync`)
 
 ## ライセンス
 
