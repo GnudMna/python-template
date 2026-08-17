@@ -61,10 +61,16 @@ if [[ "$NAME_UNCHANGED" == false ]]; then
     mv "$OLD_PACKAGE_DIR" "$NEW_PACKAGE_DIR"
 
     sed -i "s/^name = \"${CURRENT_NAME}\"/name = \"${NEW_NAME}\"/" pyproject.toml
-    sed -i "s/^${CURRENT_NAME} = \"${OLD_IDENT}:main\"/${NEW_NAME} = \"${NEW_IDENT}:main\"/" pyproject.toml
+    sed -i "s/^${CURRENT_NAME} = \"${OLD_IDENT}.cli:main\"/${NEW_NAME} = \"${NEW_IDENT}.cli:main\"/" pyproject.toml
 
     sed -i "s/\`${CURRENT_NAME}\`/\`${NEW_NAME}\`/g" "${NEW_PACKAGE_DIR}/__init__.py"
-    sed -i "s/from ${OLD_IDENT} import/from ${NEW_IDENT} import/g" tests/test_greet.py
+    for test_file in tests/*.py; do
+        sed -i "s/from ${OLD_IDENT}/from ${NEW_IDENT}/g" "$test_file"
+    done
+    if [[ -f .vscode/launch.json ]]; then
+        sed -i "s/${CURRENT_NAME}/${NEW_NAME}/g" .vscode/launch.json
+        sed -i "s/${OLD_IDENT}/${NEW_IDENT}/g" .vscode/launch.json
+    fi
 fi
 
 if [[ -n "$COPYRIGHT_HOLDER" ]]; then

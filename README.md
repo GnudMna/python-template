@@ -12,15 +12,20 @@ Python プロジェクトのテンプレートです。新規プロジェクト�
 ├── .python-version         # Python バージョン固定 (uv)
 ├── .vscode/
 │   ├── extensions.json     # 推奨拡張機能 (Ruff / Python など)
+│   ├── launch.json         # デバッグ構成
 │   └── settings.json       # ワークスペース設定 (保存時フォーマット)
 ├── pyproject.toml          # プロジェクト定義・依存関係・ツール設定
 ├── uv.lock
 ├── LICENSE
 ├── src/
 │   └── python_template/    # パッケージ本体
-│       └── __init__.py
+│       ├── __init__.py     # 公開 API
+│       ├── __main__.py     # python -m 用エントリ
+│       ├── cli.py          # 引数解析と main
+│       └── greet.py        # ライブラリ関数
 ├── tests/
-│   └── test_greet.py       # テスト
+│   ├── test_cli.py
+│   └── test_greet.py
 └── scripts/
     ├── common/                 # 共通ヘルパー
     │   ├── cd-project-root.sh
@@ -112,6 +117,7 @@ uv sync
 - `src/` 配下のパッケージディレクトリ名
 - `tests/` の `import` 文
 - `src/*/__init__.py` の doc コメント
+- `.vscode/launch.json` のモジュール名
 - `uv.lock` (`uv lock` で再生成)
 - (第 2 引数指定時) `LICENSE` の著作権表記
 

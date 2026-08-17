@@ -85,8 +85,8 @@ Invoke-ScriptMain {
         $Pyproject = $Pyproject -replace "name = `"$CurrentName`"", "name = `"$NewName`""
         $Pyproject = [regex]::Replace(
             $Pyproject,
-            '(?m)^' + [regex]::Escape($CurrentName) + ' = "' + [regex]::Escape($OldIdent) + ':main"$',
-            "$NewName = `"${NewIdent}:main`""
+            '(?m)^' + [regex]::Escape($CurrentName) + ' = "' + [regex]::Escape($OldIdent) + '\.cli:main"$',
+            "$NewName = `"${NewIdent}.cli:main`""
         )
         Write-Utf8NoBom -Path $PyprojectPath -Value $Pyproject
 
@@ -97,10 +97,21 @@ Invoke-ScriptMain {
         $InitContent = $InitContent.Replace($OldCrateRef, $NewCrateRef)
         Write-Utf8NoBom -Path $InitPath -Value $InitContent
 
-        $TestPath = Join-Path $ProjectRoot 'tests/test_greet.py'
-        $TestContent = Read-Utf8NoBom -Path $TestPath
-        $TestContent = $TestContent -replace "from ${OldIdent} import", "from ${NewIdent} import"
-        Write-Utf8NoBom -Path $TestPath -Value $TestContent
+        Get-ChildItem -LiteralPath (Join-Path $ProjectRoot 'tests') -Filter '*.py' | ForEach-Object {
+            $TestContent = Read-Utf8NoBom -Path $_.FullName
+            $Updated = $TestContent.Replace("from ${OldIdent}", "from ${NewIdent}")
+            if ($Updated -ne $TestContent) {
+                Write-Utf8NoBom -Path $_.FullName -Value $Updated
+            }
+        }
+
+        $LaunchPath = Join-Path $ProjectRoot '.vscode/launch.json'
+        if (Test-Path -LiteralPath $LaunchPath) {
+            $LaunchContent = Read-Utf8NoBom -Path $LaunchPath
+            $LaunchContent = $LaunchContent.Replace($CurrentName, $NewName)
+            $LaunchContent = $LaunchContent.Replace($OldIdent, $NewIdent)
+            Write-Utf8NoBom -Path $LaunchPath -Value $LaunchContent
+        }
     }
 
     if ($CopyrightHolder) {

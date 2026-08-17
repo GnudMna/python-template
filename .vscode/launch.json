@@ -1,0 +1,143 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: python-template (引数なし)",
+            "type": "debugpy",
+            "request": "launch",
+            "windows": {
+                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+            },
+            "linux": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "osx": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "module": "python_template",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: python-template (位置引数)",
+            "type": "debugpy",
+            "request": "launch",
+            "windows": {
+                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+            },
+            "linux": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "osx": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "module": "python_template",
+            "args": ["Alice"],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: python-template (位置引数 + オプション)",
+            "type": "debugpy",
+            "request": "launch",
+            "windows": {
+                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+            },
+            "linux": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "osx": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "module": "python_template",
+            "args": ["Alice", "--count", "3"],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: python-template (起動時に引数入力)",
+            "type": "debugpy",
+            "request": "launch",
+            "windows": {
+                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+            },
+            "linux": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "osx": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "module": "python_template",
+            "args": ["${input:cliArgs}"],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: 現在のファイル",
+            "type": "debugpy",
+            "request": "launch",
+            "windows": {
+                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+            },
+            "linux": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "osx": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "program": "${file}",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Python: pytest",
+            "type": "debugpy",
+            "request": "launch",
+            "windows": {
+                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
+            },
+            "linux": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "osx": {
+                "python": "${workspaceFolder}/.venv/bin/python"
+            },
+            "module": "pytest",
+            "args": ["-v"],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/src"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ],
+    "inputs": [
+        {
+            "id": "cliArgs",
+            "type": "promptString",
+            "description": "位置引数 name (例: Alice)",
+            "default": "Alice"
+        }
+    ]
+}
