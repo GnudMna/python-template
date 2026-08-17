@@ -1,8 +1,25 @@
 """コマンドラインインターフェース"""
 
 import argparse
+from dataclasses import dataclass
 
 from .greet import greet
+
+
+@dataclass(frozen=True, slots=True)
+class Args:
+    """解析済みのコマンドライン引数
+
+    Parameters
+    ----------
+    name : str
+        挨拶する名前
+    count : int
+        挨拶する回数
+    """
+
+    name: str
+    count: int
 
 
 def _positive_int(value: str) -> int:
@@ -31,7 +48,7 @@ def _positive_int(value: str) -> int:
     return parsed
 
 
-def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+def parse_args(argv: list[str] | None = None) -> Args:
     """引数を解析する
 
     Parameters
@@ -41,7 +58,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
     Returns
     -------
-    argparse.Namespace
+    Args
         解析された引数
     """
     parser = argparse.ArgumentParser(description="Greet someone.")
@@ -58,17 +75,24 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         default=1,
         help="Number of times to greet (default: 1)",
     )
-    return parser.parse_args(argv)
+    parsed = parser.parse_args(argv)
+    return Args(name=parsed.name, count=parsed.count)
 
 
-def main(argv: list[str] | None = None) -> None:
+def main(argv: list[str] | None = None) -> int:
     """メイン関数
 
     Parameters
     ----------
     argv : list[str] | None, optional
         コマンドライン引数, デフォルトは None
+
+    Returns
+    -------
+    int
+        終了コード。成功時は 0
     """
     args = parse_args(argv)
     for _ in range(args.count):
         print(greet(args.name))
+    return 0

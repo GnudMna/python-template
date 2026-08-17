@@ -1,6 +1,8 @@
 """パッケージをモジュールとして実行する"""
 
+import sys
+
 from .cli import main
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

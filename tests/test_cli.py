@@ -2,28 +2,25 @@
 
 import pytest
 
-from python_template.cli import main, parse_args
+from python_template.cli import Args, main, parse_args
 
 
 def test_parse_args_defaults() -> None:
     """引数なしのときのデフォルト値を検証する"""
     args = parse_args([])
-    assert args.name == "world"
-    assert args.count == 1
+    assert args == Args(name="world", count=1)
 
 
 def test_parse_args_name_and_long_count() -> None:
     """位置引数と長いオプション --count を検証する"""
     args = parse_args(["Alice", "--count", "3"])
-    assert args.name == "Alice"
-    assert args.count == 3
+    assert args == Args(name="Alice", count=3)
 
 
 def test_parse_args_short_count() -> None:
     """短縮オプション -n が --count と同じ意味になることを検証する"""
     args = parse_args(["Bob", "-n", "2"])
-    assert args.name == "Bob"
-    assert args.count == 2
+    assert args == Args(name="Bob", count=2)
 
 
 @pytest.mark.parametrize(
@@ -51,7 +48,7 @@ def test_main_prints_greetings(
     capsys : pytest.CaptureFixture[str]
         標準出力を捕捉するフィクスチャ
     """
-    main(argv)
+    assert main(argv) == 0
     assert capsys.readouterr().out == expected
 
 
