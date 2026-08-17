@@ -87,14 +87,16 @@ uv sync
 
 ```bash
 ./scripts/linux/rename-project.sh my-project
-./scripts/linux/rename-project.sh my-project "Your Name"   # 著作権者も同時に更新
+./scripts/linux/rename-project.sh my-project "Your Name"                  # 著作権者と authors.name も更新
+./scripts/linux/rename-project.sh my-project "Your Name" you@example.com  # email も更新
 ```
 
 **macOS**
 
 ```bash
 ./scripts/macos/rename-project.sh my-project
-./scripts/macos/rename-project.sh my-project "Your Name"   # 著作権者も同時に更新
+./scripts/macos/rename-project.sh my-project "Your Name"
+./scripts/macos/rename-project.sh my-project "Your Name" you@example.com
 ```
 
 **Windows**
@@ -102,14 +104,15 @@ uv sync
 ```powershell
 ./scripts/windows/rename-project.ps1 my-project
 ./scripts/windows/rename-project.ps1 my-project "Your Name"
+./scripts/windows/rename-project.ps1 my-project "Your Name" you@example.com
 ```
 
-`pyproject.toml` の `name` を変更し、ハイフン区切りの名前は Python の識別子規則に合わせてアンダースコアに置き換えます。
+入力は kebab-case のみ受け付けます。`pyproject.toml` の `name` はそのまま使い、Python 識別子はハイフンをアンダースコアに置き換えたものになります。
 
-| pyproject.toml の `name` | Python 識別子 (`import` など) |
-| ------------------------ | ------------------------------- |
-| `my-project`             | `my_project`                    |
-| `my_app`                 | `my_app`                        |
+| 指定する名前 (`pyproject.toml` の `name`) | Python 識別子 (`import` など) |
+| ---------------------------------------- | ----------------------------- |
+| `my-project`                             | `my_project`                  |
+| `my-app`                                 | `my_app`                      |
 
 スクリプトが自動で更新する箇所:
 
@@ -117,14 +120,18 @@ uv sync
 - `src/` 配下のパッケージディレクトリ名
 - `tests/` の `import` 文
 - `src/*/__init__.py` の doc コメント
-- `.vscode/launch.json` のモジュール名
+- `README.md` のタイトル、構成ツリー、`uv run` 例、パッケージパス
+- `scripts/*/run.*` のコンソールスクリプト名
+- `.vscode/launch.json` の表示名とモジュール名
 - `uv.lock` (`uv lock` で再生成)
-- (第 2 引数指定時) `LICENSE` の著作権表記
+- (第 2 引数指定時) `LICENSE` の著作権表記 (年は実行時の西暦) と `authors.name`
+- (第 3 引数指定時) `pyproject.toml` の `authors.email`
 
 手動で更新が必要な箇所:
 
-- `pyproject.toml` の `description`, `authors`, `repository` など
-- `README.md` のタイトル
+- `pyproject.toml` の `description`, `repository` など
+- `README.md` のプロジェクト説明文
+- (引数省略時) `LICENSE` と `authors`
 
 ### 3. ビルド・実行・テスト
 
