@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "uv: sync if no venv",
+            "type": "shell",
+            "command": "[ -x '${workspaceFolder}/.venv/bin/python' ] || uv sync",
+            "windows": {
+                "command": "if (-not (Test-Path -LiteralPath '${workspaceFolder}\\.venv\\Scripts\\python.exe')) { uv sync }",
+                "options": {
+                    "shell": {
+                        "executable": "powershell.exe",
+                        "args": ["-NoProfile", "-Command"]
+                    }
+                }
+            },
+            "linux": {
+                "options": {
+                    "shell": {
+                        "executable": "/bin/bash",
+                        "args": ["-c"]
+                    }
+                }
+            },
+            "osx": {
+                "options": {
+                    "shell": {
+                        "executable": "/bin/bash",
+                        "args": ["-c"]
+                    }
+                }
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "presentation": {
+                "reveal": "silent",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": false
+            },
+            "problemMatcher": []
+        }
+    ]
+}

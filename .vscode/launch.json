@@ -5,6 +5,7 @@
             "name": "Python: python-template (引数なし)",
             "type": "debugpy",
             "request": "launch",
+            "preLaunchTask": "uv: sync if no venv",
             "windows": {
                 "python": "${workspaceFolder}/.venv/Scripts/python.exe"
             },
@@ -16,9 +17,6 @@
             },
             "module": "python_template",
             "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}/src"
-            },
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -26,6 +24,7 @@
             "name": "Python: python-template (位置引数)",
             "type": "debugpy",
             "request": "launch",
+            "preLaunchTask": "uv: sync if no venv",
             "windows": {
                 "python": "${workspaceFolder}/.venv/Scripts/python.exe"
             },
@@ -38,9 +37,6 @@
             "module": "python_template",
             "args": ["Alice"],
             "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}/src"
-            },
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -48,6 +44,7 @@
             "name": "Python: python-template (位置引数 + オプション)",
             "type": "debugpy",
             "request": "launch",
+            "preLaunchTask": "uv: sync if no venv",
             "windows": {
                 "python": "${workspaceFolder}/.venv/Scripts/python.exe"
             },
@@ -60,9 +57,6 @@
             "module": "python_template",
             "args": ["Alice", "--count", "3"],
             "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}/src"
-            },
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -70,6 +64,7 @@
             "name": "Python: python-template (起動時に引数入力)",
             "type": "debugpy",
             "request": "launch",
+            "preLaunchTask": "uv: sync if no venv",
             "windows": {
                 "python": "${workspaceFolder}/.venv/Scripts/python.exe"
             },
@@ -82,9 +77,6 @@
             "module": "python_template",
             "args": ["${input:cliArgs}"],
             "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}/src"
-            },
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -92,6 +84,7 @@
             "name": "Python: 現在のファイル",
             "type": "debugpy",
             "request": "launch",
+            "preLaunchTask": "uv: sync if no venv",
             "windows": {
                 "python": "${workspaceFolder}/.venv/Scripts/python.exe"
             },
@@ -103,9 +96,6 @@
             },
             "program": "${file}",
             "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}/src"
-            },
             "console": "integratedTerminal",
             "justMyCode": true
         },
@@ -113,6 +103,7 @@
             "name": "Python: pytest",
             "type": "debugpy",
             "request": "launch",
+            "preLaunchTask": "uv: sync if no venv",
             "windows": {
                 "python": "${workspaceFolder}/.venv/Scripts/python.exe"
             },
@@ -125,9 +116,6 @@
             "module": "pytest",
             "args": ["-v"],
             "cwd": "${workspaceFolder}",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}/src"
-            },
             "console": "integratedTerminal",
             "justMyCode": true
         }

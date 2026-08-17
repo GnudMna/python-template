@@ -13,6 +13,7 @@ Python プロジェクトのテンプレートです。新規プロジェクト�
 ├── .vscode/
 │   ├── extensions.json     # 推奨拡張機能 (Ruff / Python など)
 │   ├── launch.json         # デバッグ構成
+│   ├── tasks.json          # デバッグ前に .venv が無ければ uv sync
 │   └── settings.json       # ワークスペース設定 (保存時フォーマット)
 ├── pyproject.toml          # プロジェクト定義・依存関係・ツール設定
 ├── uv.lock
@@ -190,7 +191,7 @@ uv build
 - **pytest** (テスト)
 - **src レイアウト** (`src/python_template/` パッケージ)
 - **コンソールスクリプト** (`[project.scripts]` → `uv run python-template`)
-- **エディタ設定** (`.editorconfig`, `.gitattributes`, `.vscode/` で Ruff 推奨・保存時フォーマット)
+- **エディタ設定** (`.editorconfig`, `.gitattributes`, `.vscode/` で Ruff 推奨・保存時フォーマット。デバッグ開始時に `.venv` が無ければ `uv sync`)
 
 ## ライセンス
 
