@@ -20,13 +20,15 @@ Python プロジェクトのテンプレートです。新規プロジェクト�
 ├── LICENSE
 ├── src/
 │   └── python_template/    # パッケージ本体
-│       ├── __init__.py     # 公開 API
+│       ├── __init__.py     # 公開 API (__version__ 含む)
 │       ├── __main__.py     # python -m 用エントリ
 │       ├── cli.py          # 引数解析と main
-│       └── greet.py        # ライブラリ関数
+│       ├── greet.py        # ライブラリ関数
+│       └── py.typed        # PEP 561 型情報マーカー
 ├── tests/
 │   ├── test_cli.py
-│   └── test_greet.py
+│   ├── test_greet.py
+│   └── test_package.py
 └── scripts/
     ├── common/                 # 共通ヘルパー
     │   ├── cd-project-root.sh
@@ -189,7 +191,7 @@ uv build
 - **Ruff** (Lint / フォーマット)
 - **Pyright** (型チェック)
 - **pytest** (テスト)
-- **src レイアウト** (`src/python_template/` パッケージ)
+- **src レイアウト** (`src/python_template/` パッケージ。`__version__` と PEP 561 の `py.typed` を含む)
 - **コンソールスクリプト** (`[project.scripts]` → `uv run python-template`)
 - **エディタ設定** (`.editorconfig`, `.gitattributes`, `.vscode/` で Ruff 推奨・保存時フォーマット。pytest をテストエクスプローラーで検出。デバッグ開始時に `.venv` が無ければ `uv sync`)
 
