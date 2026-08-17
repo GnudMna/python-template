@@ -146,7 +146,7 @@ uv build
 
 ```bash
 ./scripts/linux/build.sh
-./scripts/linux/run.sh
+./scripts/linux/run.sh Alice --count 2    # 以降の引数をアプリへ渡す
 ./scripts/linux/test.sh
 ./scripts/linux/lint.sh
 ./scripts/linux/format.sh
@@ -157,7 +157,7 @@ uv build
 
 ```bash
 ./scripts/macos/build.sh
-./scripts/macos/run.sh
+./scripts/macos/run.sh Alice --count 2    # 以降の引数をアプリへ渡す
 ./scripts/macos/test.sh
 ./scripts/macos/lint.sh
 ./scripts/macos/format.sh
@@ -168,7 +168,7 @@ uv build
 
 ```powershell
 ./scripts/windows/build.ps1
-./scripts/windows/run.ps1
+./scripts/windows/run.ps1 Alice --count 2  # 以降の引数をアプリへ渡す
 ./scripts/windows/test.ps1
 ./scripts/windows/lint.ps1
 ./scripts/windows/format.ps1

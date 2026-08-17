@@ -2,7 +2,7 @@
 # ========================================================================
 # Script Name : run.sh
 # Description : Linux用のアプリ実行スクリプト
-# Usage       : ./run.sh
+# Usage       : ./run.sh [args...]
 # ========================================================================
 
 set -euo pipefail
@@ -16,4 +16,4 @@ trap 'echo "実行に失敗しました" >&2' ERR
 echo "アプリケーションを実行しています..."
 echo
 
-uv run python-template
+uv run python-template "$@"
