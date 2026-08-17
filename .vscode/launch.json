@@ -6,15 +6,7 @@
             "type": "debugpy",
             "request": "launch",
             "preLaunchTask": "uv: sync if no venv",
-            "windows": {
-                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
-            },
-            "linux": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
-            "osx": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
+            "python": "${command:python.interpreterPath}",
             "module": "python_template",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
@@ -25,15 +17,7 @@
             "type": "debugpy",
             "request": "launch",
             "preLaunchTask": "uv: sync if no venv",
-            "windows": {
-                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
-            },
-            "linux": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
-            "osx": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
+            "python": "${command:python.interpreterPath}",
             "module": "python_template",
             "args": ["Alice"],
             "cwd": "${workspaceFolder}",
@@ -45,15 +29,7 @@
             "type": "debugpy",
             "request": "launch",
             "preLaunchTask": "uv: sync if no venv",
-            "windows": {
-                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
-            },
-            "linux": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
-            "osx": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
+            "python": "${command:python.interpreterPath}",
             "module": "python_template",
             "args": ["Alice", "--count", "3"],
             "cwd": "${workspaceFolder}",
@@ -65,17 +41,9 @@
             "type": "debugpy",
             "request": "launch",
             "preLaunchTask": "uv: sync if no venv",
-            "windows": {
-                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
-            },
-            "linux": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
-            "osx": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
+            "python": "${command:python.interpreterPath}",
             "module": "python_template",
-            "args": ["${input:cliArgs}"],
+            "args": "${command:pickArgs}",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "justMyCode": true
@@ -85,15 +53,7 @@
             "type": "debugpy",
             "request": "launch",
             "preLaunchTask": "uv: sync if no venv",
-            "windows": {
-                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
-            },
-            "linux": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
-            "osx": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
+            "python": "${command:python.interpreterPath}",
             "program": "${file}",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
@@ -104,28 +64,12 @@
             "type": "debugpy",
             "request": "launch",
             "preLaunchTask": "uv: sync if no venv",
-            "windows": {
-                "python": "${workspaceFolder}/.venv/Scripts/python.exe"
-            },
-            "linux": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
-            "osx": {
-                "python": "${workspaceFolder}/.venv/bin/python"
-            },
+            "python": "${command:python.interpreterPath}",
             "module": "pytest",
             "args": ["-v"],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "justMyCode": true
-        }
-    ],
-    "inputs": [
-        {
-            "id": "cliArgs",
-            "type": "promptString",
-            "description": "位置引数 name (例: Alice)",
-            "default": "Alice"
         }
     ]
 }
