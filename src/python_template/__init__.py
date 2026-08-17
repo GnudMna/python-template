@@ -1,4 +1,4 @@
-"""Library package for `python-template`."""
+"""`python-template` 用のライブラリパッケージ"""
 
 from .greet import greet
 

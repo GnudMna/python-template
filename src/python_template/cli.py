@@ -1,4 +1,4 @@
-"""Command-line interface."""
+"""コマンドラインインターフェース"""
 
 import argparse
 
@@ -6,7 +6,18 @@ from .greet import greet
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
-    """Parse command-line arguments."""
+    """引数を解析する
+
+    Parameters
+    ----------
+    argv : list[str] | None, optional
+        コマンドライン引数, デフォルトは None
+
+    Returns
+    -------
+    argparse.Namespace
+        解析された引数
+    """
     parser = argparse.ArgumentParser(description="Greet someone.")
     parser.add_argument(
         "name",
@@ -25,7 +36,13 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 
 def main(argv: list[str] | None = None) -> None:
-    """Entry point for the console script."""
+    """メイン関数
+
+    Parameters
+    ----------
+    argv : list[str] | None, optional
+        コマンドライン引数, デフォルトは None
+    """
     args = parse_args(argv)
     for _ in range(args.count):
         print(greet(args.name))
