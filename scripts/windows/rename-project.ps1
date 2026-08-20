@@ -147,8 +147,7 @@ Invoke-ScriptMain {
         foreach ($RelativePath in @(
                 'README.md',
                 '.vscode/launch.json',
-                'scripts/linux/run.sh',
-                'scripts/macos/run.sh',
+                'scripts/unix/run.sh',
                 'scripts/windows/run.ps1'
             )) {
             Update-NameInFile -Path (Join-Path $ProjectRoot $RelativePath) `

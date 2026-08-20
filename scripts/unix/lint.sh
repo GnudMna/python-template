@@ -1,8 +1,8 @@
 #!/bin/bash
 # ========================================================================
-# Script Name : test.sh
-# Description : Linux用のテスト実行スクリプト
-# Usage       : ./test.sh
+# Script Name : lint.sh
+# Description : Linux / macOS 用の Lint 実行スクリプト
+# Usage       : ./lint.sh
 # ========================================================================
 
 set -euo pipefail
@@ -11,12 +11,12 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # shellcheck source=../common/cd-project-root.sh
 source "$SCRIPT_DIR/../common/cd-project-root.sh"
 
-trap 'echo "テストに失敗しました" >&2' ERR
+trap 'echo "Lint に失敗しました" >&2' ERR
 
-echo "テストを実行しています..."
+echo "ruff による Lint を実行しています..."
 echo
 
-uv run pytest
+uv run ruff check
 echo
 
-echo "すべてのテストが完了しました"
+echo "Lint が完了しました"

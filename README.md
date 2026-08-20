@@ -34,15 +34,7 @@ Python プロジェクトのテンプレートです。新規プロジェクト�
     │   ├── cd-project-root.sh
     │   ├── cd-project-root.ps1
     │   └── wait-if-double-clicked.ps1
-    ├── linux/                  # Linux 向けエントリポイント
-    │   ├── build.sh
-    │   ├── run.sh
-    │   ├── test.sh
-    │   ├── lint.sh
-    │   ├── format.sh
-    │   ├── check.sh
-    │   └── rename-project.sh
-    ├── macos/                  # macOS 向けエントリポイント
+    ├── unix/                   # Linux / macOS 向けエントリポイント
     │   ├── build.sh
     │   ├── run.sh
     │   ├── test.sh
@@ -86,20 +78,12 @@ uv sync
 
 スクリプトで一括変更する場合 (推奨):
 
-**Linux**
+**Linux / macOS**
 
 ```bash
-./scripts/linux/rename-project.sh my-project
-./scripts/linux/rename-project.sh my-project "Your Name"                  # 著作権者と authors.name も更新
-./scripts/linux/rename-project.sh my-project "Your Name" you@example.com  # email も更新
-```
-
-**macOS**
-
-```bash
-./scripts/macos/rename-project.sh my-project
-./scripts/macos/rename-project.sh my-project "Your Name"
-./scripts/macos/rename-project.sh my-project "Your Name" you@example.com
+./scripts/unix/rename-project.sh my-project
+./scripts/unix/rename-project.sh my-project "Your Name"                  # 著作権者と authors.name も更新
+./scripts/unix/rename-project.sh my-project "Your Name" you@example.com  # email も更新
 ```
 
 **Windows**
@@ -152,26 +136,15 @@ uv build
 
 スクリプトを使う場合 (どこから実行してもプロジェクトルートに移動してから実行します):
 
-**Linux**
+**Linux / macOS**
 
 ```bash
-./scripts/linux/build.sh
-./scripts/linux/run.sh Alice --count 2    # 以降の引数をアプリへ渡す
-./scripts/linux/test.sh
-./scripts/linux/lint.sh
-./scripts/linux/format.sh
-./scripts/linux/check.sh          # CI 向け一括チェック (format / lint / typecheck / test)
-```
-
-**macOS**
-
-```bash
-./scripts/macos/build.sh
-./scripts/macos/run.sh Alice --count 2    # 以降の引数をアプリへ渡す
-./scripts/macos/test.sh
-./scripts/macos/lint.sh
-./scripts/macos/format.sh
-./scripts/macos/check.sh          # CI 向け一括チェック (format / lint / typecheck / test)
+./scripts/unix/build.sh
+./scripts/unix/run.sh Alice --count 2    # 以降の引数をアプリへ渡す
+./scripts/unix/test.sh
+./scripts/unix/lint.sh
+./scripts/unix/format.sh
+./scripts/unix/check.sh          # CI 向け一括チェック (format / lint / typecheck / test)
 ```
 
 **Windows**

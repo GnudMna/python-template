@@ -1,7 +1,7 @@
 #!/bin/bash
 # ========================================================================
 # Script Name : rename-project.sh
-# Description : テンプレートのプロジェクト名を一括変更する
+# Description : テンプレートのプロジェクト名を一括変更する (Linux / macOS)
 # Usage       : ./rename-project.sh <new-name> [author] [email]
 #               new-name : kebab-case(例: my-project)
 #               author   : 省略可。LICENSE と pyproject.toml の authors.name を更新
@@ -47,12 +47,28 @@ escape_sed_repl() {
     printf '%s' "$1" | sed -e 's/[&/\]/\\&/g'
 }
 
+# GNU sed (sed -i) と BSD sed (sed -i '') の差を避けるため、一時ファイル経由で置換する
+sed_inplace() {
+    local file="$1"
+    shift
+    local tmp
+    tmp="$(mktemp)"
+    if sed "$@" "$file" >"$tmp"; then
+        cat "$tmp" >"$file"
+        rm -f "$tmp"
+    else
+        local status=$?
+        rm -f "$tmp"
+        return "$status"
+    fi
+}
+
 replace_in_file() {
     local file="$1"
     local from="$2"
     local to="$3"
     [[ -f "$file" ]] || return 0
-    sed -i '' "s/${from}/${to}/g" "$file"
+    sed_inplace "$file" "s/${from}/${to}/g"
 }
 
 replace_name_in_file() {
@@ -90,18 +106,17 @@ if [[ "$NAME_UNCHANGED" == false ]]; then
 
     mv "$OLD_PACKAGE_DIR" "$NEW_PACKAGE_DIR"
 
-    sed -i '' "s/^name = \"${CURRENT_NAME}\"/name = \"${NEW_NAME}\"/" pyproject.toml
-    sed -i '' "s/^${CURRENT_NAME} = \"${OLD_IDENT}.cli:main\"/${NEW_NAME} = \"${NEW_IDENT}.cli:main\"/" pyproject.toml
+    sed_inplace pyproject.toml "s/^name = \"${CURRENT_NAME}\"/name = \"${NEW_NAME}\"/"
+    sed_inplace pyproject.toml "s/^${CURRENT_NAME} = \"${OLD_IDENT}.cli:main\"/${NEW_NAME} = \"${NEW_IDENT}.cli:main\"/"
 
     replace_name_in_file "${NEW_PACKAGE_DIR}/__init__.py"
     for test_file in tests/*.py; do
         [[ -f "$test_file" ]] || continue
-        sed -i '' "s/from ${OLD_IDENT}/from ${NEW_IDENT}/g" "$test_file"
+        sed_inplace "$test_file" "s/from ${OLD_IDENT}/from ${NEW_IDENT}/g"
     done
     replace_name_in_file README.md
     replace_name_in_file .vscode/launch.json
-    replace_name_in_file scripts/linux/run.sh
-    replace_name_in_file scripts/macos/run.sh
+    replace_name_in_file scripts/unix/run.sh
     replace_name_in_file scripts/windows/run.ps1
 fi
 
@@ -114,13 +129,13 @@ if [[ -n "$AUTHOR" ]]; then
     AUTHOR_REPL="$(escape_sed_repl "$AUTHOR")"
     YEAR="$(date +%Y)"
     COPYRIGHT_LINE="Copyright (c) ${YEAR} ${AUTHOR_REPL}"
-    sed -i '' "s/^Copyright (c) .*/${COPYRIGHT_LINE}/" LICENSE
-    sed -i '' -E "s/(\{ name = \")[^\"]+(\", email =)/\1${AUTHOR_REPL}\2/" pyproject.toml
+    sed_inplace LICENSE "s/^Copyright (c) .*/${COPYRIGHT_LINE}/"
+    sed_inplace pyproject.toml -E "s/(\{ name = \")[^\"]+(\", email =)/\1${AUTHOR_REPL}\2/"
 fi
 
 if [[ -n "$EMAIL" ]]; then
     EMAIL_REPL="$(escape_sed_repl "$EMAIL")"
-    sed -i '' -E "s/(\{ name = \"[^\"]+\", email = \")[^\"]+(\")/\1${EMAIL_REPL}\2/" pyproject.toml
+    sed_inplace pyproject.toml -E "s/(\{ name = \"[^\"]+\", email = \")[^\"]+(\")/\1${EMAIL_REPL}\2/"
 fi
 
 if [[ "$NAME_UNCHANGED" == false ]]; then

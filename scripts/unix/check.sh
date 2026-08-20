@@ -1,7 +1,7 @@
 #!/bin/bash
 # ========================================================================
 # Script Name : check.sh
-# Description : macOS用の品質チェックスクリプト(format / lint / typecheck / test)
+# Description : Linux / macOS 用の品質チェックスクリプト(format / lint / typecheck / test)
 # Usage       : ./check.sh
 # ========================================================================
 
