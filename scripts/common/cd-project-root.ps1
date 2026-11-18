@@ -2,10 +2,10 @@
 # Script Name : cd-project-root.ps1
 # Description : プロジェクトのルートディレクトリに移動する(ドットソース用)
 # Usage       : . (Join-Path $PSScriptRoot '..\common\cd-project-root.ps1')
-# Requires    : PowerShell 7.0+
+# Requires    : PowerShell 7.4+
 # ========================================================================
 
-#requires -Version 7.0
+#requires -Version 7.4
 
 # プロジェクトルートを計算
 $ProjectRoot = (Get-Item -LiteralPath (Join-Path $PSScriptRoot '..\..')).FullName

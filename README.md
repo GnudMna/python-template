@@ -58,7 +58,7 @@ Python プロジェクトのテンプレートです。新規プロジェクト�
 ### 前提
 
 - [uv](https://docs.astral.sh/uv/) がインストールされていること
-- **Windows**: [PowerShell 7 以上](https://github.com/PowerShell/PowerShell/releases) (`pwsh`)。スクリプトは UTF-8 (BOM なし) です。エクスプローラーからダブルクリックで実行した場合は、結果を確認できるよう Enter 待ちになります (ターミナルからの実行では待ちません)。
+- **Windows**: [PowerShell 7.4 以上](https://github.com/PowerShell/PowerShell/releases) (`pwsh`)。スクリプトは UTF-8 (BOM なし) です。エクスプローラーからダブルクリックで実行した場合は、結果を確認できるよう Enter 待ちになります (ターミナルからの実行では待ちません)。
 
 ```powershell
 # uv のインストール例 (Windows)

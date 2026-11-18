@@ -3,10 +3,10 @@
 # Description : エクスプローラーからのダブルクリック実行時にウィンドウを開いたままにする
 # Usage       : . (Join-Path $PSScriptRoot '..\common\wait-if-double-clicked.ps1')
 #               Invoke-ScriptMain { ... }
-# Requires    : PowerShell 7.0+
+# Requires    : PowerShell 7.4+
 # ========================================================================
 
-#requires -Version 7.0
+#requires -Version 7.4
 
 # pwsh がスクリプトファイル実行用に起動されたか (対話セッションで .\script.ps1 した場合は false)
 function Test-StartedAsFileInvocation {
