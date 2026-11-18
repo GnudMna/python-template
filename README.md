@@ -30,6 +30,7 @@ Python プロジェクトのテンプレートです。新規プロジェクト�
 │   ├── test_greet.py
 │   └── test_package.py
 └── scripts/
+    ├── rename_project.py       # rename-project の処理本体 (標準ライブラリのみ)
     ├── common/                 # 共通ヘルパー
     │   ├── cd-project-root.sh
     │   ├── cd-project-root.ps1
