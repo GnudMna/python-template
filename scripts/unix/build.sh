@@ -16,10 +16,6 @@ trap 'echo "ビルドに失敗しました" >&2' ERR
 echo "Python プロジェクトのビルドを実行しています..."
 echo
 
-echo "依存関係を同期中..."
-uv sync
-echo
-
 echo "パッケージをビルド中..."
 uv build
 echo

@@ -17,7 +17,7 @@ echo "品質チェックを実行しています..."
 echo
 
 echo "依存関係を同期中..."
-uv sync
+uv sync --locked
 echo
 
 echo "コード整形を検証中..."

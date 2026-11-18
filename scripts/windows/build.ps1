@@ -19,10 +19,6 @@ Invoke-ScriptMain {
     Write-Host 'Python プロジェクトのビルドを実行しています...'
     Write-Host ''
 
-    Write-Host '依存関係を同期中...'
-    uv sync
-    Write-Host ''
-
     Write-Host 'パッケージをビルド中...'
     uv build
 

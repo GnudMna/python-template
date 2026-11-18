@@ -20,7 +20,7 @@ Invoke-ScriptMain {
     Write-Host ''
 
     Write-Host '依存関係を同期中...'
-    uv sync
+    uv sync --locked
     Write-Host ''
 
     Write-Host 'コード整形を検証中...'
