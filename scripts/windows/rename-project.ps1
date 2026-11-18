@@ -51,6 +51,23 @@ Invoke-ScriptMain {
         [System.IO.File]::WriteAllText($Path, $Value, $Utf8NoBom)
     }
 
+    # 識別子の一部(pytest, tests/ など)を巻き込まないよう、単語境界つきで置換する
+    function Replace-Word {
+        param(
+            [Parameter(Mandatory = $true)]
+            [string]$Text,
+
+            [Parameter(Mandatory = $true)]
+            [string]$From,
+
+            [Parameter(Mandatory = $true)]
+            [string]$To
+        )
+
+        $Pattern = '(?<![A-Za-z0-9_-])' + [regex]::Escape($From) + '(?![A-Za-z0-9_-])'
+        return [regex]::Replace($Text, $Pattern, { param($Match) $To })
+    }
+
     function Update-NameInFile {
         param(
             [Parameter(Mandatory = $true)]
@@ -74,7 +91,8 @@ Invoke-ScriptMain {
         }
 
         $Content = Read-Utf8NoBom -Path $Path
-        $Updated = $Content.Replace($CurrentName, $NewName).Replace($OldIdent, $NewIdent)
+        $Updated = Replace-Word -Text $Content -From $CurrentName -To $NewName
+        $Updated = Replace-Word -Text $Updated -From $OldIdent -To $NewIdent
         if ($Updated -ne $Content) {
             Write-Utf8NoBom -Path $Path -Value $Updated
         }
@@ -138,7 +156,7 @@ Invoke-ScriptMain {
         Get-ChildItem -LiteralPath (Join-Path $ProjectRoot 'tests') -Filter '*.py' -ErrorAction SilentlyContinue |
             ForEach-Object {
                 $TestContent = Read-Utf8NoBom -Path $_.FullName
-                $Updated = $TestContent.Replace("from ${OldIdent}", "from ${NewIdent}")
+                $Updated = Replace-Word -Text $TestContent -From "from ${OldIdent}" -To "from ${NewIdent}"
                 if ($Updated -ne $TestContent) {
                     Write-Utf8NoBom -Path $_.FullName -Value $Updated
                 }

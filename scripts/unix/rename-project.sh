@@ -68,7 +68,11 @@ replace_in_file() {
     local from="$2"
     local to="$3"
     [[ -f "$file" ]] || return 0
-    sed_inplace "$file" "s/${from}/${to}/g"
+    # 識別子の一部(pytest, tests/ など)を巻き込まないよう、単語境界つきで置換する。
+    # 連続する一致で区切り文字が共有されるため、同じ置換を 2 回適用する
+    local pattern="(^|[^A-Za-z0-9_-])${from}([^A-Za-z0-9_-]|\$)"
+    local repl="\1${to}\2"
+    sed_inplace "$file" -E "s/${pattern}/${repl}/g;s/${pattern}/${repl}/g"
 }
 
 replace_name_in_file() {
@@ -112,7 +116,7 @@ if [[ "$NAME_UNCHANGED" == false ]]; then
     replace_name_in_file "${NEW_PACKAGE_DIR}/__init__.py"
     for test_file in tests/*.py; do
         [[ -f "$test_file" ]] || continue
-        sed_inplace "$test_file" "s/from ${OLD_IDENT}/from ${NEW_IDENT}/g"
+        replace_in_file "$test_file" "from ${OLD_IDENT}" "from ${NEW_IDENT}"
     done
     replace_name_in_file README.md
     replace_name_in_file .vscode/launch.json
