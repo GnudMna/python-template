@@ -37,12 +37,13 @@ def _positive_int(value: str) -> int:
 
     Raises
     ------
-    ValueError
-        整数に変換できない場合。argparse がエラー表示に使う。
     argparse.ArgumentTypeError
-        1 未満の場合
+        整数に変換できない場合、または 1 未満の場合
     """
-    parsed = int(value)
+    try:
+        parsed = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"{value!r} is not an integer") from None
     if parsed < 1:
         raise argparse.ArgumentTypeError(f"{value} is not a positive integer")
     return parsed

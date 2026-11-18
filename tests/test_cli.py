@@ -87,4 +87,6 @@ def test_main_rejects_invalid_count(
         main(["--count", count])
 
     assert exc_info.value.code == 2
-    assert "error:" in capsys.readouterr().err
+    err = capsys.readouterr().err
+    assert "error:" in err
+    assert "_positive_int" not in err
