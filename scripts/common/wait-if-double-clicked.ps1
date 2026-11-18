@@ -108,11 +108,8 @@ function Invoke-ScriptMain {
     $exitCode = 0
 
     try {
+        # 失敗は各スクリプトが throw で通知する。$LASTEXITCODE は参照しない
         & $Body
-
-        if ($LASTEXITCODE -ne 0) {
-            $exitCode = $LASTEXITCODE
-        }
     } catch {
         $exitCode = 1
         Write-Host ''
