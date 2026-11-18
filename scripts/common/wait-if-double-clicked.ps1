@@ -112,12 +112,12 @@ function Invoke-ScriptMain {
         & $Body
     } catch {
         $exitCode = 1
-        Write-Host ''
+        [Console]::Error.WriteLine()
 
         if ($_.Exception.Message) {
-            Write-Host $_.Exception.Message
+            [Console]::Error.WriteLine($_.Exception.Message)
         } else {
-            Write-Host $_
+            [Console]::Error.WriteLine("$_")
         }
     } finally {
         Wait-IfDoubleClicked

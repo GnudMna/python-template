@@ -16,11 +16,11 @@ $PSNativeCommandUseErrorActionPreference = $true
 Invoke-ScriptMain {
     . (Join-Path $PSScriptRoot '..\common\cd-project-root.ps1')
 
-    Write-Host 'ruff によるコード整形を実行しています...'
-    Write-Host ''
+    [Console]::Error.WriteLine('ruff によるコード整形を実行しています...')
+    [Console]::Error.WriteLine()
 
     uv run ruff format
 
-    Write-Host ''
-    Write-Host 'コード整形が完了しました'
+    [Console]::Error.WriteLine()
+    [Console]::Error.WriteLine('コード整形が完了しました')
 }

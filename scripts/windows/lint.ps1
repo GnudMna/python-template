@@ -16,11 +16,11 @@ $PSNativeCommandUseErrorActionPreference = $true
 Invoke-ScriptMain {
     . (Join-Path $PSScriptRoot '..\common\cd-project-root.ps1')
 
-    Write-Host 'ruff による Lint を実行しています...'
-    Write-Host ''
+    [Console]::Error.WriteLine('ruff による Lint を実行しています...')
+    [Console]::Error.WriteLine()
 
     uv run ruff check
 
-    Write-Host ''
-    Write-Host 'Lint が完了しました'
+    [Console]::Error.WriteLine()
+    [Console]::Error.WriteLine('Lint が完了しました')
 }

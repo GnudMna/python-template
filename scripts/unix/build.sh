@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ========================================================================
 # Script Name : build.sh
 # Description : Linux / macOS 用のビルド実行スクリプト
@@ -13,11 +13,11 @@ source "$SCRIPT_DIR/../common/cd-project-root.sh"
 
 trap 'echo "ビルドに失敗しました" >&2' ERR
 
-echo "Python プロジェクトのビルドを実行しています..."
-echo
+echo "Python プロジェクトのビルドを実行しています..." >&2
+echo >&2
 
-echo "パッケージをビルド中..."
+echo "パッケージをビルド中..." >&2
 uv build
-echo
+echo >&2
 
-echo "ビルドが完了しました"
+echo "ビルドが完了しました" >&2

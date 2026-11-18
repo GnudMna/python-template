@@ -16,28 +16,28 @@ $PSNativeCommandUseErrorActionPreference = $true
 Invoke-ScriptMain {
     . (Join-Path $PSScriptRoot '..\common\cd-project-root.ps1')
 
-    Write-Host '品質チェックを実行しています...'
-    Write-Host ''
+    [Console]::Error.WriteLine('品質チェックを実行しています...')
+    [Console]::Error.WriteLine()
 
-    Write-Host '依存関係を同期中...'
+    [Console]::Error.WriteLine('依存関係を同期中...')
     uv sync --locked
-    Write-Host ''
+    [Console]::Error.WriteLine()
 
-    Write-Host 'コード整形を検証中...'
+    [Console]::Error.WriteLine('コード整形を検証中...')
     uv run ruff format --check
-    Write-Host ''
+    [Console]::Error.WriteLine()
 
-    Write-Host 'Lint を実行中...'
+    [Console]::Error.WriteLine('Lint を実行中...')
     uv run ruff check
-    Write-Host ''
+    [Console]::Error.WriteLine()
 
-    Write-Host '型チェックを実行中...'
+    [Console]::Error.WriteLine('型チェックを実行中...')
     uv run pyright
-    Write-Host ''
+    [Console]::Error.WriteLine()
 
-    Write-Host 'テストを実行中...'
+    [Console]::Error.WriteLine('テストを実行中...')
     uv run pytest
-    Write-Host ''
+    [Console]::Error.WriteLine()
 
-    Write-Host 'すべてのチェックが完了しました'
+    [Console]::Error.WriteLine('すべてのチェックが完了しました')
 }

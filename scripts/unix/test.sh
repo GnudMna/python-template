@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ========================================================================
 # Script Name : test.sh
 # Description : Linux / macOS 用のテスト実行スクリプト
@@ -13,10 +13,10 @@ source "$SCRIPT_DIR/../common/cd-project-root.sh"
 
 trap 'echo "テストに失敗しました" >&2' ERR
 
-echo "テストを実行しています..."
-echo
+echo "テストを実行しています..." >&2
+echo >&2
 
 uv run pytest
-echo
+echo >&2
 
-echo "すべてのテストが完了しました"
+echo "すべてのテストが完了しました" >&2

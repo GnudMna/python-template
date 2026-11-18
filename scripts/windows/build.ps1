@@ -16,12 +16,12 @@ $PSNativeCommandUseErrorActionPreference = $true
 Invoke-ScriptMain {
     . (Join-Path $PSScriptRoot '..\common\cd-project-root.ps1')
 
-    Write-Host 'Python プロジェクトのビルドを実行しています...'
-    Write-Host ''
+    [Console]::Error.WriteLine('Python プロジェクトのビルドを実行しています...')
+    [Console]::Error.WriteLine()
 
-    Write-Host 'パッケージをビルド中...'
+    [Console]::Error.WriteLine('パッケージをビルド中...')
     uv build
 
-    Write-Host ''
-    Write-Host 'ビルドが完了しました'
+    [Console]::Error.WriteLine()
+    [Console]::Error.WriteLine('ビルドが完了しました')
 }

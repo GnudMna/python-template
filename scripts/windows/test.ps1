@@ -16,11 +16,11 @@ $PSNativeCommandUseErrorActionPreference = $true
 Invoke-ScriptMain {
     . (Join-Path $PSScriptRoot '..\common\cd-project-root.ps1')
 
-    Write-Host 'テストを実行しています...'
-    Write-Host ''
+    [Console]::Error.WriteLine('テストを実行しています...')
+    [Console]::Error.WriteLine()
 
     uv run pytest
 
-    Write-Host ''
-    Write-Host 'すべてのテストが完了しました'
+    [Console]::Error.WriteLine()
+    [Console]::Error.WriteLine('すべてのテストが完了しました')
 }

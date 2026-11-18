@@ -19,8 +19,8 @@ $AppArgs = @($args)
 Invoke-ScriptMain {
     . (Join-Path $PSScriptRoot '..\common\cd-project-root.ps1')
 
-    Write-Host 'アプリケーションを実行しています...'
-    Write-Host ''
+    [Console]::Error.WriteLine('アプリケーションを実行しています...')
+    [Console]::Error.WriteLine()
 
     uv run python-template @AppArgs
 }

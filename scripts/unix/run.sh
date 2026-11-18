@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ========================================================================
 # Script Name : run.sh
 # Description : Linux / macOS 用のアプリ実行スクリプト
@@ -13,7 +13,7 @@ source "$SCRIPT_DIR/../common/cd-project-root.sh"
 
 trap 'echo "実行に失敗しました" >&2' ERR
 
-echo "アプリケーションを実行しています..."
-echo
+echo "アプリケーションを実行しています..." >&2
+echo >&2
 
 uv run python-template "$@"

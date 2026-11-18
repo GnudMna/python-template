@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ========================================================================
 # Script Name : rename-project.sh
 # Description : テンプレートのプロジェクト名を一括変更する (Linux / macOS)
