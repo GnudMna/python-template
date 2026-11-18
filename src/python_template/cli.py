@@ -3,6 +3,7 @@
 import argparse
 from dataclasses import dataclass
 
+from . import __version__
 from .greet import greet
 
 
@@ -63,6 +64,12 @@ def parse_args(argv: list[str] | None = None) -> Args:
         解析された引数
     """
     parser = argparse.ArgumentParser(description="Greet someone.")
+    parser.add_argument(
+        "-V",
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
+    )
     parser.add_argument(
         "name",
         nargs="?",

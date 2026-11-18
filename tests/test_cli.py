@@ -2,6 +2,7 @@
 
 import pytest
 
+from python_template import __version__
 from python_template.cli import Args, main, parse_args
 
 
@@ -67,6 +68,27 @@ def test_main_help_exits_zero(capsys: pytest.CaptureFixture[str]) -> None:
     output = capsys.readouterr().out
     assert "Greet someone" in output
     assert "--count" in output
+
+
+@pytest.mark.parametrize("option", ["--version", "-V"])
+def test_main_version_exits_zero(
+    option: str,
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    """--version / -V が終了コード 0 でバージョンを表示することを検証する
+
+    Parameters
+    ----------
+    option : str
+        バージョン表示オプション
+    capsys : pytest.CaptureFixture[str]
+        標準出力を捕捉するフィクスチャ
+    """
+    with pytest.raises(SystemExit) as exc_info:
+        main([option])
+
+    assert exc_info.value.code == 0
+    assert __version__ in capsys.readouterr().out
 
 
 @pytest.mark.parametrize("count", ["0", "-1", "abc"])
