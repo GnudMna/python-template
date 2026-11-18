@@ -11,6 +11,9 @@ license-files = ["LICENSE"]
 requires-python = ">=3.13"
 dependencies = []
 
+[project.urls]
+Repository = "https://example.com/your-name/python-template"
+
 [project.scripts]
 python-template = "python_template.cli:main"
 

@@ -70,7 +70,7 @@ powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | ie
 ```bash
 git clone <Template Repo URL> my-project
 cd my-project
-rm -rf .git
+rm -rf .git   # PowerShell: Remove-Item -Recurse -Force .git
 git init
 uv sync
 ```
@@ -117,7 +117,7 @@ uv sync
 
 手動で更新が必要な箇所:
 
-- `pyproject.toml` の `description`, `repository` など
+- `pyproject.toml` の `description`, `[project.urls]` など
 - `README.md` のプロジェクト説明文
 - (引数省略時) `LICENSE` と `authors`
 

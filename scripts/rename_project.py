@@ -190,7 +190,7 @@ def run(new_name: str, author: str, email: str) -> None:
         print()
 
     print("変更が完了しました。必要に応じて以下を手動で更新してください:")
-    print("  - pyproject.toml の description, repository")
+    print("  - pyproject.toml の description, [project.urls]")
     print("  - README.md のプロジェクト説明文")
     if not author:
         print("  - LICENSE の著作権表記と pyproject.toml の authors.name")
