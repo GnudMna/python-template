@@ -1,5 +1,6 @@
 *      text eol=lf
-*.sh   text eol=lf  # Windows で新規追加した場合は git add --chmod=+x -- path/to/script.sh
+# Windows で新規追加した場合は git add --chmod=+x -- path/to/script.sh
+*.sh   text eol=lf
 *.png  binary
 *.jpg  binary
 *.jpeg binary
